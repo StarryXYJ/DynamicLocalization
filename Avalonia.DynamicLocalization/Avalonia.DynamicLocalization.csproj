@@ -11,7 +11,7 @@
 
         <!-- NuGet Packaging -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>Avalonia.DynamicLocalization</PackageId>
+        <PackageId>Starry.Avalonia.Localization</PackageId>
         <Authors>Sakuya Starry</Authors>
         <Description>A lightweight, extensible, and pluggable Avalonia internationalization library with hot-reload support and multiple data sources.</Description>
         <PackageTags>i18n;Localization;Avalonia</PackageTags>
