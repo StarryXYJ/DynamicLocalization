@@ -54,7 +54,7 @@ jobs:
         run: dotnet test --configuration Release --no-build --verbosity normal
 
       - name: Pack
-        run: dotnet pack Avalonia.DynamicLocalization/Avalonia.DynamicLocalization.csproj --configuration Release --no-build --output artifacts
+        run: dotnet pack DynamicLocalization.Avalonia/DynamicLocalization.Avalonia.csproj --configuration Release --no-build --output artifacts
 
       - name: List packages
         run: Get-ChildItem artifacts -Filter *.nupkg
