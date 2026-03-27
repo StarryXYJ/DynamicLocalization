@@ -12,13 +12,18 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>DynamicLocalization.Core</PackageId>
         <Authors>Sakuya Starry</Authors>
-        <Description>Core library for DynamicLocalization - platform-independent localization services.</Description>
+        <Description>Core library for DynamicLocalization - platform-independent localization services with hot-reload support and multiple data sources.</Description>
         <PackageTags>i18n;Localization</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/StarryXYJ/Avalonia.DynamicLocalization</PackageProjectUrl>
         <RepositoryUrl>https://github.com/StarryXYJ/Avalonia.DynamicLocalization.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="MinVer" Version="8.0.0-alpha.1">

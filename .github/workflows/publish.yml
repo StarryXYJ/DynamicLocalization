@@ -1,4 +1,4 @@
-﻿name: Publish to NuGet
+name: Publish to NuGet
 
 on:
   push:
@@ -53,8 +53,14 @@ jobs:
       - name: Test
         run: dotnet test --configuration Release --no-build --verbosity normal
 
-      - name: Pack
-        run: dotnet pack DynamicLocalization.Avalonia/DynamicLocalization.Avalonia.csproj --configuration Release --no-build --output artifacts
+      - name: Pack DynamicLocalization.Core
+        run: dotnet pack src/DynamicLocalization.Core/DynamicLocalization.Core.csproj --configuration Release --no-build --output artifacts
+
+      - name: Pack DynamicLocalization.Avalonia
+        run: dotnet pack src/DynamicLocalization.Avalonia/DynamicLocalization.Avalonia.csproj --configuration Release --no-build --output artifacts
+
+      - name: Pack DynamicLocalization.WPF
+        run: dotnet pack src/DynamicLocalization.WPF/DynamicLocalization.WPF.csproj --configuration Release --no-build --output artifacts
 
       - name: List packages
         run: Get-ChildItem artifacts -Filter *.nupkg
@@ -72,4 +78,3 @@ jobs:
           name: nuget-packages
           path: artifacts/*.nupkg
           retention-days: 30
-

@@ -19,7 +19,12 @@
         <PackageProjectUrl>https://github.com/StarryXYJ/Avalonia.DynamicLocalization</PackageProjectUrl>
         <RepositoryUrl>https://github.com/StarryXYJ/Avalonia.DynamicLocalization.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="MinVer" Version="8.0.0-alpha.1">
