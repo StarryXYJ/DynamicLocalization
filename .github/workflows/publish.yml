@@ -54,7 +54,7 @@ jobs:
         run: dotnet test --configuration Release --no-build --verbosity normal
 
       - name: Pack
-        run: dotnet pack --configuration Release --no-build --output artifacts
+        run: dotnet pack Avalonia.DynamicLocalization/Avalonia.DynamicLocalization.csproj --configuration Release --no-build --output artifacts
 
       - name: List packages
         run: Get-ChildItem artifacts -Filter *.nupkg
@@ -73,9 +73,3 @@ jobs:
           path: artifacts/*.nupkg
           retention-days: 30
 
-      - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: artifacts/*.nupkg
-          generate_release_notes: true
