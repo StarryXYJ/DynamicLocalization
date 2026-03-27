@@ -1,0 +1,13 @@
+{
+  "App.Title": "Avalonia Dynamische Lokalisierung Demo",
+  "Greeting": "Willkommen bei Avalonia Dynamische Lokalisierung!",
+  "SwitchLanguage": "Sprache wechseln:",
+  "Features.Title": "Funktionen:",
+  "Fallback.Title": "Kultur-Fallback-Demo:",
+  "Fallback.Description": "Dieser Abschnitt demonstriert das Kultur-Fallback-Verhalten.",
+  "Fallback.CommonKey": "Dies ist ein gemeinsamer Schlüssel (aus de.json)",
+  "Fallback.GermanOnly": "Dieser Schlüssel existiert nur auf Deutsch (de)",
+  "Color.Red": "Rot",
+  "Color.Blue": "Blau",
+  "Color.Green": "Grün"
+}

@@ -1,0 +1,17 @@
+{
+  "App.Title": "Avalonia 动态本地化演示",
+  "Greeting": "欢迎使用 Avalonia 动态本地化！",
+  "WelcomeMessage": "这是一个轻量级、可扩展、可插拔的 Avalonia 国际化库。",
+  "SwitchLanguage": "切换语言：",
+  "Features.Title": "功能特性：",
+  "Features.Json": "• 基于 JSON 的本地化文件",
+  "Features.HotReload": "• 支持热重载",
+  "Features.Pluggable": "• 可插拔的提供者系统",
+  "Fallback.Title": "文化回退演示：",
+  "Fallback.Description": "此部分演示文化回退行为。",
+  "Fallback.CommonKey": "这是一个通用键（来自 zh-CN.json）",
+  "Fallback.ChineseOnly": "此键仅存在于简体中文（zh-CN）",
+  "Color.Red": "红色",
+  "Color.Blue": "蓝色",
+  "Color.Green": "绿色"
+}

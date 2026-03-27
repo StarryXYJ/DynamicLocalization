@@ -1,0 +1,17 @@
+{
+  "App.Title": "Avalonia Dynamic Localization Demo (UK)",
+  "Greeting": "Welcome to Avalonia Dynamic Localization!",
+  "WelcomeMessage": "This is a lightweight, extensible, and pluggable internationalisation library for Avalonia.",
+  "SwitchLanguage": "Switch Language:",
+  "Features.Title": "Features:",
+  "Features.Json": "• JSON-based localisation files",
+  "Features.HotReload": "• Hot reload support",
+  "Features.Pluggable": "• Pluggable provider system",
+  "Fallback.Title": "Culture Fallback Demo:",
+  "Fallback.Description": "This section demonstrates culture fallback behaviour.",
+  "Fallback.CommonKey": "This is a common key (from en-GB.json)",
+  "Fallback.UKOnly": "This key only exists in British English (en-GB)",
+  "Color.Red": "Red",
+  "Color.Blue": "Blue",
+  "Color.Green": "Green"
+}

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App.Title" xml:space="preserve">
+    <value>Avalonia RESX 本地化演示</value>
+  </data>
+  <data name="Greeting" xml:space="preserve">
+    <value>来自 RESX 的问候！</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>此演示展示了基于 RESX 的本地化支持。</value>
+  </data>
+  <data name="SwitchLanguage" xml:space="preserve">
+    <value>切换语言：</value>
+  </data>
+  <data name="Features.Title" xml:space="preserve">
+    <value>特性：</value>
+  </data>
+  <data name="Features.Resx" xml:space="preserve">
+    <value>RESX 资源文件支持</value>
+  </data>
+  <data name="Features.HotReload" xml:space="preserve">
+    <value>热重载支持</value>
+  </data>
+  <data name="Features.Pluggable" xml:space="preserve">
+    <value>可插拔的提供程序架构</value>
+  </data>
+  <data name="Fallback.Title" xml:space="preserve">
+    <value>文化回退演示：</value>
+  </data>
+  <data name="Fallback.Description" xml:space="preserve">
+    <value>此部分演示文化回退行为。</value>
+  </data>
+  <data name="Fallback.CommonKey" xml:space="preserve">
+    <value>这是一个通用键（来自 Strings.zh-CN.resx）</value>
+  </data>
+  <data name="Fallback.ChineseOnly" xml:space="preserve">
+    <value>此键仅存在于简体中文</value>
+  </data>
+  <data name="Color.Red" xml:space="preserve">
+    <value>红色</value>
+  </data>
+  <data name="Color.Blue" xml:space="preserve">
+    <value>蓝色</value>
+  </data>
+  <data name="Color.Green" xml:space="preserve">
+    <value>绿色</value>
+  </data>
+</root>

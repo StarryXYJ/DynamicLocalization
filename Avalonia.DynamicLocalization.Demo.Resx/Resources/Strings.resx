@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App.Title" xml:space="preserve">
+    <value>Avalonia RESX Localization Demo</value>
+  </data>
+  <data name="Greeting" xml:space="preserve">
+    <value>Hello from RESX!</value>
+  </data>
+  <data name="WelcomeMessage" xml:space="preserve">
+    <value>This demo shows RESX-based localization support.</value>
+  </data>
+  <data name="SwitchLanguage" xml:space="preserve">
+    <value>Switch Language:</value>
+  </data>
+  <data name="Features.Title" xml:space="preserve">
+    <value>Features:</value>
+  </data>
+  <data name="Features.Resx" xml:space="preserve">
+    <value>RESX resource file support</value>
+  </data>
+  <data name="Features.HotReload" xml:space="preserve">
+    <value>Hot reload support</value>
+  </data>
+  <data name="Features.Pluggable" xml:space="preserve">
+    <value>Pluggable provider architecture</value>
+  </data>
+  <data name="Fallback.Title" xml:space="preserve">
+    <value>Culture Fallback Demo:</value>
+  </data>
+  <data name="Fallback.Description" xml:space="preserve">
+    <value>This section demonstrates culture fallback behavior.</value>
+  </data>
+  <data name="Fallback.CommonKey" xml:space="preserve">
+    <value>This is a common key (from Strings.resx)</value>
+  </data>
+  <data name="Fallback.EnglishOnly" xml:space="preserve">
+    <value>This key only exists in base English</value>
+  </data>
+  <data name="Color.Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="Color.Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="Color.Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+</root>

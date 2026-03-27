@@ -1,0 +1,135 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaLab.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:loc="clr-namespace:Avalonia.DynamicLocalization.MarkupExtensions;assembly=Avalonia.DynamicLocalization"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        x:Class="AvaloniaLab.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{loc:Localize App.Title}">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Window.Styles>
+        <Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
+        </Style>
+        <Style Selector="TextBlock.h2">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,8,0,8"/>
+        </Style>
+        <Style Selector="TextBlock.body">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+        <Style Selector="TextBlock.mono">
+            <Setter Property="FontFamily" Value="Consolas,Courier New,monospace"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="8,4"/>
+        </Style>
+    </Window.Styles>
+
+    <ScrollViewer>
+        <StackPanel Margin="40" Spacing="16">
+            <TextBlock Classes="h1" Text="{Binding Greeting}"/>
+            <TextBlock Classes="body" Text="{Binding WelcomeMessage}"/>
+            <TextBlock Classes="body" Text="{loc:Localize SwitchLanguage}"/>
+            <ComboBox ItemsSource="{Binding AvailableLanguages}"
+                      SelectedItem="{Binding SelectedLanguage}"
+                      Width="200"
+                      HorizontalAlignment="Left">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding NativeName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Border BorderThickness="2" BorderBrush="BlueViolet" Padding="16" Margin="0,16,0,0" CornerRadius="8">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{loc:Localize Features.Title}" FontWeight="Bold"/>
+                    <TextBlock Text="{loc:Localize Features.Json}"/>
+                    <TextBlock Text="{loc:Localize Features.HotReload}"/>
+                    <TextBlock Text="{loc:Localize Features.Pluggable}"/>
+                </StackPanel>
+            </Border>
+
+            <Border BorderThickness="2" BorderBrush="Orange" Padding="16" Margin="0,16,0,0" CornerRadius="8">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="{loc:Localize Fallback.Title}" FontWeight="Bold" FontSize="16"/>
+                    <TextBlock Classes="body" Text="{loc:Localize Fallback.Description}"/>
+                    
+                    <Separator Margin="0,8"/>
+                    
+                    <TextBlock Classes="h2" Text="Current Culture Info:"/>
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" Margin="0,4,0,0">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Current Culture: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding CurrentCultureName}" Classes="mono"/>
+                        
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Parent Culture: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ParentCultureName}" Classes="mono"/>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Available Cultures: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding AvailableCulturesList}" Classes="mono" TextWrapping="Wrap"/>
+                    </Grid>
+
+                    <Separator Margin="0,8"/>
+                    
+                    <TextBlock Classes="h2" Text="Fallback Behavior Demo:"/>
+                    <TextBlock Classes="body" Text="Keys with fallback (common key exists in all cultures):" Margin="0,4,0,0"/>
+                    <Grid ColumnDefinitions="200,*" RowDefinitions="Auto">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Fallback.CommonKey: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{loc:Localize Fallback.CommonKey}" Classes="mono"/>
+                    </Grid>
+
+                    <TextBlock Classes="body" Text="Keys that only exist in specific cultures (will fallback to parent or default):" Margin="0,8,0,0"/>
+                    <Grid ColumnDefinitions="200,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Fallback.EnglishOnly: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{loc:Localize Fallback.EnglishOnly}" Classes="mono"/>
+                        
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Fallback.USOnly: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{loc:Localize Fallback.USOnly}" Classes="mono"/>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Fallback.UKOnly: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{loc:Localize Fallback.UKOnly}" Classes="mono"/>
+                        
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Fallback.ChineseOnly: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{loc:Localize Fallback.ChineseOnly}" Classes="mono"/>
+                        
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Fallback.JapaneseOnly: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{loc:Localize Fallback.JapaneseOnly}" Classes="mono"/>
+                    </Grid>
+
+                    <TextBlock Classes="body" Text="Keys that don't exist anywhere (returns key name):" Margin="0,8,0,0"/>
+                    <Grid ColumnDefinitions="200,*" RowDefinitions="Auto">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="NonExistent.Key: " FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{loc:Localize NonExistent.Key}" Classes="mono" Foreground="Red"/>
+                    </Grid>
+
+                    <Separator Margin="0,8"/>
+                    
+                    <TextBlock Classes="h2" Text="Color Names (demonstrates partial localization):"/>
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <Border Background="#FF6B6B" Padding="12,6" CornerRadius="4">
+                            <TextBlock Text="{loc:Localize Color.Red}" Foreground="White" FontWeight="Bold"/>
+                        </Border>
+                        <Border Background="#4ECDC4" Padding="12,6" CornerRadius="4">
+                            <TextBlock Text="{loc:Localize Color.Blue}" Foreground="White" FontWeight="Bold"/>
+                        </Border>
+                        <Border Background="#95E1A3" Padding="12,6" CornerRadius="4">
+                            <TextBlock Text="{loc:Localize Color.Green}" Foreground="Black" FontWeight="Bold"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+
+</Window>

@@ -1,0 +1,17 @@
+{
+  "App.Title": "Avalonia ダイナミックローカリゼーションデモ",
+  "Greeting": "Avalonia ダイナミックローカリゼーションへようこそ！",
+  "WelcomeMessage": "これは軽量で拡張可能なAvalonia用の国際化ライブラリです。",
+  "SwitchLanguage": "言語を切り替え：",
+  "Features.Title": "機能：",
+  "Features.Json": "• JSONベースのローカリゼーションファイル",
+  "Features.HotReload": "• ホットリロード対応",
+  "Features.Pluggable": "• プラグイン可能なプロバイダシステム",
+  "Fallback.Title": "カルチャフォールバックデモ：",
+  "Fallback.Description": "このセクションはカルチャフォールバックの動作を示します。",
+  "Fallback.CommonKey": "これは共通キーです（ja.jsonから）",
+  "Fallback.JapaneseOnly": "このキーは日本語（ja）にのみ存在します",
+  "Color.Red": "赤",
+  "Color.Blue": "青",
+  "Color.Green": "緑"
+}
