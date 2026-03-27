@@ -1,3 +1,4 @@
+using System;
 using Avalonia.DynamicLocalization.Core;
 using Avalonia.DynamicLocalization.Providers;
 using Microsoft.Extensions.DependencyInjection;
