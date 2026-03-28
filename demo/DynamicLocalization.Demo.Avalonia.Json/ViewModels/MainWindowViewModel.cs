@@ -13,61 +13,71 @@ namespace DynamicLocalization.Demo.Avalonia.Json.ViewModels;
 /// </summary>
 public partial class MainWindowViewModel : ViewModelBase, IDisposable
 {
-    private readonly ILanguageService _languageService;
+    private readonly ICultureService _cultureService;
 
     /// <summary>
     /// Gets the application title.
     /// </summary>
-    public string Title => _languageService["App.Title"];
+    public string Title => _cultureService["App.Title"];
 
     /// <summary>
     /// Gets the greeting message.
     /// </summary>
-    public string Greeting => _languageService["Greeting"];
+    public string Greeting => _cultureService["Greeting"];
 
     /// <summary>
     /// Gets the welcome message.
     /// </summary>
-    public string WelcomeMessage => _languageService["WelcomeMessage"];
+    public string WelcomeMessage => _cultureService["WelcomeMessage"];
 
     /// <summary>
     /// Gets the language switch label.
     /// </summary>
-    public string SwitchLanguageLabel => _languageService["SwitchLanguage"];
+    public string SwitchLanguageLabel => _cultureService["SwitchLanguage"];
 
     /// <summary>
-    /// Gets the available languages from all providers.
+    /// Gets the available cultures from all providers.
     /// </summary>
-    public ObservableCollection<CultureInfo> AvailableLanguages { get; }
+    public ObservableCollection<CultureInfo> AvailableCultures { get; }
 
     [ObservableProperty]
-    private CultureInfo? _selectedLanguage;
+    private CultureInfo? _selectedCulture;
 
-    public string CurrentCultureName => _languageService.CurrentLanguage.Name;
+    public string CurrentCultureName => _cultureService.CurrentCulture.Name;
 
-    public string ParentCultureName => _languageService.CurrentLanguage.Parent?.Name ?? "(none)";
+    public string ParentCultureName => _cultureService.CurrentCulture.Parent?.Name ?? "(none)";
 
-    public string AvailableCulturesList => string.Join(", ", _languageService.AvailableLanguages.Select(c => c.Name));
+    public string AvailableCulturesList => string.Join(", ", _cultureService.AvailableCultures.Select(c => c.Name));
 
-    partial void OnSelectedLanguageChanged(CultureInfo? value)
+    public string FormatWelcome => _cultureService.Format("Format.Welcome", "John");
+    
+    public string FormatItemsCount => _cultureService.Format("Format.ItemsCount", 5);
+    
+    public string FormatPriceDisplay => _cultureService.Format("Format.PriceDisplay", "Laptop", 1299.99);
+    
+    public string FormatDateDisplay => _cultureService.Format("Format.DateDisplay", DateTime.Now);
+    
+    public string FormatNumberDisplay => _cultureService.Format("Format.NumberDisplay", 12345.6789);
+
+    partial void OnSelectedCultureChanged(CultureInfo? value)
     {
-        if (value != null && _languageService.CurrentLanguage.Name != value.Name)
+        if (value != null && _cultureService.CurrentCulture.Name != value.Name)
         {
-            _languageService.CurrentLanguage = value;
+            _cultureService.CurrentCulture = value;
         }
     }
 
     /// <summary>
     /// Creates a new instance of the view model.
     /// </summary>
-    /// <param name="languageService">The injected language service.</param>
-    public MainWindowViewModel(ILanguageService languageService)
+    /// <param name="cultureService">The injected culture service.</param>
+    public MainWindowViewModel(ICultureService cultureService)
     {
-        _languageService = languageService;
-        AvailableLanguages = new ObservableCollection<CultureInfo>(languageService.AvailableLanguages);
-        SelectedLanguage = languageService.CurrentLanguage;
+        _cultureService = cultureService;
+        AvailableCultures = new ObservableCollection<CultureInfo>(cultureService.AvailableCultures);
+        SelectedCulture = cultureService.CurrentCulture;
 
-        _languageService.LanguageChanged += OnLanguageChanged;
+        _cultureService.CultureChanged += OnCultureChanged;
     }
 
     /// <summary>
@@ -76,7 +86,7 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void OnLanguageChanged(object? sender, LanguageChangedEventArgs e)
+    private void OnCultureChanged(object? sender, CultureChangedEventArgs e)
     {
         Dispatcher.UIThread.Post(() =>
         {
@@ -86,14 +96,19 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
             OnPropertyChanged(nameof(SwitchLanguageLabel));
             OnPropertyChanged(nameof(CurrentCultureName));
             OnPropertyChanged(nameof(ParentCultureName));
+            OnPropertyChanged(nameof(FormatWelcome));
+            OnPropertyChanged(nameof(FormatItemsCount));
+            OnPropertyChanged(nameof(FormatPriceDisplay));
+            OnPropertyChanged(nameof(FormatDateDisplay));
+            OnPropertyChanged(nameof(FormatNumberDisplay));
         });
     }
 
     /// <summary>
-    /// Unsubscribes from language change events to prevent memory leaks.
+    /// Unsubscribes from culture change events to prevent memory leaks.
     /// </summary>
     public void Dispose()
     {
-        _languageService.LanguageChanged -= OnLanguageChanged;
+        _cultureService.CultureChanged -= OnCultureChanged;
     }
 }

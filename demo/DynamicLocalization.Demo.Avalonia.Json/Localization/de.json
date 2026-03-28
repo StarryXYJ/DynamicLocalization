@@ -23,5 +23,14 @@
     "Red": "Rot",
     "Blue": "Blau",
     "Green": "Grün"
+  },
+  "Format": {
+    "Title": "String-Formatierung Demo:",
+    "Description": "Demonstriert dynamische String-Formatierung mit Parametern.",
+    "Welcome": "Willkommen, {0}!",
+    "ItemsCount": "Sie haben {0} Artikel in Ihrem Warenkorb.",
+    "PriceDisplay": "Produkt: {0}, Preis: {1:C}",
+    "DateDisplay": "Heute ist {0:D}",
+    "NumberDisplay": "Wert: {0:N2}"
   }
 }

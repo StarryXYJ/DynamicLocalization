@@ -19,7 +19,7 @@ namespace DynamicLocalization.Demo.Avalonia.Resx;
 /// <para>Configuration steps:</para>
 /// <list type="number">
 ///   <item><description>Call <see cref="ServiceCollectionExtensions.AddResxLocalization"/> to register RESX provider</description></item>
-///   <item><description>Call <see cref="ServiceCollectionExtensions.AddLanguageService"/> to register language service</description></item>
+///   <item><description>Call <see cref="ServiceCollectionExtensions.AddCultureService"/> to register culture service</description></item>
 ///   <item><description>Call <see cref="LocalizationExtensions.InitializeLocalization"/> to initialize static service</description></item>
 /// </list>
 /// </remarks>
@@ -74,7 +74,7 @@ public partial class App : Application
             options.KnownCultures = new[] { "en", "en-US", "en-GB", "zh-CN", "zh-TW", "ja", "de" };
         });
 
-        services.AddLanguageService();
+        services.AddCultureService();
         services.AddSingleton<MainWindowViewModel>();
     }
 

@@ -23,5 +23,14 @@
     "Red": "紅色",
     "Blue": "藍色",
     "Green": "綠色"
+  },
+  "Format": {
+    "Title": "字串格式化演示：",
+    "Description": "演示帶參數的動態字串格式化。",
+    "Welcome": "歡迎，{0}！",
+    "ItemsCount": "您的購物車中有 {0} 件商品。",
+    "PriceDisplay": "商品：{0}，價格：{1:C}",
+    "DateDisplay": "今天是 {0:D}",
+    "NumberDisplay": "數值：{0:N2}"
   }
 }

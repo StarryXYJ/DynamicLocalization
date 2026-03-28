@@ -57,4 +57,25 @@
   <data name="Color.Green" xml:space="preserve">
     <value>綠色</value>
   </data>
+  <data name="Format.Title" xml:space="preserve">
+    <value>字串格式化演示：</value>
+  </data>
+  <data name="Format.Description" xml:space="preserve">
+    <value>演示帶參數的動態字串格式化。</value>
+  </data>
+  <data name="Format.Welcome" xml:space="preserve">
+    <value>歡迎，{0}！</value>
+  </data>
+  <data name="Format.ItemsCount" xml:space="preserve">
+    <value>您的購物車中有 {0} 件商品。</value>
+  </data>
+  <data name="Format.PriceDisplay" xml:space="preserve">
+    <value>產品：{0}，價格：{1:C}</value>
+  </data>
+  <data name="Format.DateDisplay" xml:space="preserve">
+    <value>今天是 {0:D}</value>
+  </data>
+  <data name="Format.NumberDisplay" xml:space="preserve">
+    <value>數值：{0:N2}</value>
+  </data>
 </root>

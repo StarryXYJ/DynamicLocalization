@@ -33,10 +33,10 @@ public partial class App : Application
         {
             options.ResourceType = typeof(global::DynamicLocalization.Demo.Wpf.Resx.Resources.Strings);
             options.AutoDetectCultures = false;
-            options.KnownCultures = new[] { "en", "en-US", "en-GB", "zh-CN", "zh-TW", "ja", "de" };
+            options.KnownCultures = ["en", "en-US", "en-GB", "zh-CN", "zh-TW", "ja", "de"];
         });
 
-        services.AddLanguageService();
+        services.AddCultureService();
         services.AddSingleton<MainWindowViewModel>();
     }
 }

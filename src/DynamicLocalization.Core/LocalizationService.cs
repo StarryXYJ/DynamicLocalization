@@ -16,8 +16,8 @@ namespace DynamicLocalization.Core;
 /// Initialization:
 /// <code>
 /// // In App.axaml.cs or App.xaml.cs
-/// var languageService = serviceProvider.GetRequiredService&lt;ILanguageService&gt;();
-/// LocalizationService.Initialize(languageService);
+/// var cultureService = serviceProvider.GetRequiredService&lt;ICultureService&gt;();
+/// LocalizationService.Initialize(cultureService);
 /// </code>
 /// 
 /// Usage:
@@ -31,24 +31,24 @@ namespace DynamicLocalization.Core;
 /// </example>
 public static class LocalizationService
 {
-    private static ILanguageService? _languageService;
+    private static ICultureService? _cultureService;
 
     /// <summary>
-    /// Gets or sets the language service instance.
+    /// Gets or sets the culture service instance.
     /// </summary>
     /// <remarks>
     /// Typically no need to set manually; use <see cref="Initialize"/> method instead.
     /// </remarks>
-    public static ILanguageService? LanguageService
+    public static ICultureService? CultureService
     {
-        get => _languageService;
-        set => _languageService = value;
+        get => _cultureService;
+        set => _cultureService = value;
     }
 
     /// <summary>
     /// Initializes the static localization service.
     /// </summary>
-    /// <param name="languageService">The language service instance.</param>
+    /// <param name="cultureService">The culture service instance.</param>
     /// <remarks>
     /// <para>
     /// This method should be called at application startup, typically immediately after the DI container is built.
@@ -57,9 +57,9 @@ public static class LocalizationService
     /// Recommended to use the platform-specific extension method <c>serviceProvider.InitializeLocalization()</c> for automatic initialization.
     /// </para>
     /// </remarks>
-    public static void Initialize(ILanguageService languageService)
+    public static void Initialize(ICultureService cultureService)
     {
-        _languageService = languageService;
+        _cultureService = cultureService;
     }
 
     /// <summary>
@@ -69,6 +69,6 @@ public static class LocalizationService
     /// <returns>The localized string, or #key# format if service not initialized or key not found.</returns>
     public static string GetString(string key)
     {
-        return _languageService?[key] ?? $"#{key}#";
+        return _cultureService?[key] ?? $"#{key}#";
     }
 }

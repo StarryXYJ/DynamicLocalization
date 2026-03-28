@@ -19,7 +19,7 @@ namespace DynamicLocalization.Demo.Avalonia.Json;
 /// <para>Configuration steps:</para>
 /// <list type="number">
 ///   <item><description>Call <see cref="ServiceCollectionExtensions.AddJsonLocalization"/> to register JSON provider</description></item>
-///   <item><description>Call <see cref="ServiceCollectionExtensions.AddLanguageService"/> to register language service</description></item>
+///   <item><description>Call <see cref="ServiceCollectionExtensions.AddCultureService"/> to register culture service</description></item>
 ///   <item><description>Call <see cref="ServiceCollectionExtensions.InitializeLocalization"/> to initialize static service</description></item>
 /// </list>
 /// </remarks>
@@ -73,7 +73,7 @@ public partial class App : Application
             options.Assembly = typeof(App).Assembly;
         });
 
-        services.AddLanguageService();
+        services.AddCultureService();
         services.AddSingleton<MainWindowViewModel>();
     }
 

@@ -23,5 +23,14 @@
     "Red": "赤",
     "Blue": "青",
     "Green": "緑"
+  },
+  "Format": {
+    "Title": "文字列フォーマットデモ：",
+    "Description": "パラメータを使用した動的な文字列フォーマットを示します。",
+    "Welcome": "ようこそ、{0}さん！",
+    "ItemsCount": "カートに{0}点の商品があります。",
+    "PriceDisplay": "商品：{0}、価格：{1:C}",
+    "DateDisplay": "今日は{0:D}です",
+    "NumberDisplay": "値：{0:N2}"
   }
 }

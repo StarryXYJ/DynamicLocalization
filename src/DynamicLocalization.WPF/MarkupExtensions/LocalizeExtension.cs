@@ -54,13 +54,13 @@ public class LocalizeExtension : MarkupExtension
     /// <returns>A binding object bound to the localized string.</returns>
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
-        var languageService = LocalizationService.LanguageService;
-        if (languageService == null)
+        var cultureService = LocalizationService.CultureService;
+        if (cultureService == null)
         {
             return $"#{Key}#";
         }
 
-        var localizedString = new LocalizedString(languageService, Key);
+        var localizedString = new LocalizedString(cultureService, Key);
 
         var binding = new Binding(nameof(LocalizedString.Value))
         {

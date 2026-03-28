@@ -23,5 +23,14 @@
     "Red": "Red",
     "Blue": "Blue",
     "Green": "Green"
+  },
+  "Format": {
+    "Title": "String Format Demo:",
+    "Description": "Demonstrates dynamic string formatting with parameters.",
+    "Welcome": "Welcome, {0}!",
+    "ItemsCount": "You have {0} items in your cart.",
+    "PriceDisplay": "Product: {0}, Price: {1:C}",
+    "DateDisplay": "Today is {0:D}",
+    "NumberDisplay": "Value: {0:N2}"
   }
 }

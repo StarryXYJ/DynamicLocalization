@@ -43,7 +43,7 @@ public interface ILocalizationProvider
     /// <example>
     /// <code>
     /// // Unregister a specific provider
-    /// languageService.UnregisterProvider("Json");
+    /// cultureService.UnregisterProvider("Json");
     /// </code>
     /// </example>
     string Name { get; }

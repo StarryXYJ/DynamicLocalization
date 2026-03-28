@@ -15,8 +15,8 @@
             <TextBlock Style="{StaticResource BodyStyle}" Text="{Binding WelcomeMessage}"/>
             <TextBlock Style="{StaticResource BodyStyle}" Text="{loc:Localize SwitchLanguage}"/>
             
-            <ComboBox ItemsSource="{Binding AvailableLanguages}"
-                      SelectedItem="{Binding SelectedLanguage}"
+            <ComboBox ItemsSource="{Binding AvailableCultures}"
+                      SelectedItem="{Binding SelectedCulture}"
                       Width="200"
                       HorizontalAlignment="Left"
                       Margin="0,8,0,16">
@@ -33,6 +33,44 @@
                     <TextBlock Text="{loc:Localize Features.Resx}"/>
                     <TextBlock Text="{loc:Localize Features.HotReload}"/>
                     <TextBlock Text="{loc:Localize Features.Pluggable}"/>
+                </StackPanel>
+            </Border>
+
+            <Border BorderBrush="Teal" BorderThickness="2" Padding="16" Margin="0,0,0,16" CornerRadius="8">
+                <StackPanel>
+                    <TextBlock Text="{loc:Localize Format.Title}" FontWeight="Bold" FontSize="16"/>
+                    <TextBlock Style="{StaticResource BodyStyle}" Text="{loc:Localize Format.Description}"/>
+                    
+                    <Separator Margin="0,8"/>
+                    
+                    <Grid Margin="0,4,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Format.Welcome: " FontWeight="Bold" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FormatWelcome}" Style="{StaticResource MonoStyle}"/>
+                        
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Format.ItemsCount: " FontWeight="Bold" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding FormatItemsCount}" Style="{StaticResource MonoStyle}"/>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Format.PriceDisplay: " FontWeight="Bold" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding FormatPriceDisplay}" Style="{StaticResource MonoStyle}"/>
+                        
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Format.DateDisplay: " FontWeight="Bold" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding FormatDateDisplay}" Style="{StaticResource MonoStyle}"/>
+                        
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Format.NumberDisplay: " FontWeight="Bold" Margin="0,0,8,4"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding FormatNumberDisplay}" Style="{StaticResource MonoStyle}"/>
+                    </Grid>
                 </StackPanel>
             </Border>
 

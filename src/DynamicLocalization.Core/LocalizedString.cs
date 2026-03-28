@@ -19,7 +19,7 @@ namespace DynamicLocalization.Core;
 /// </remarks>
 public class LocalizedString : INotifyPropertyChanged, IDisposable
 {
-    private readonly ILanguageService _languageService;
+    private readonly ICultureService _cultureService;
     private readonly string _key;
     private readonly object?[]? _args;
     private string? _value;
@@ -27,16 +27,16 @@ public class LocalizedString : INotifyPropertyChanged, IDisposable
     /// <summary>
     /// Creates a new localized string instance.
     /// </summary>
-    /// <param name="languageService">The language service.</param>
+    /// <param name="cultureService">The language service.</param>
     /// <param name="key">The localization key.</param>
     /// <param name="args">Optional format arguments.</param>
-    public LocalizedString(ILanguageService languageService, string key, params object?[] args)
+    public LocalizedString(ICultureService cultureService, string key, params object?[] args)
     {
-        _languageService = languageService;
+        _cultureService = cultureService;
         _key = key;
         _args = args;
         _value = GetValue();
-        _languageService.LanguageChanged += OnLanguageChanged;
+        _cultureService.CultureChanged += OnCultureChanged;
     }
 
     /// <summary>
@@ -61,15 +61,15 @@ public class LocalizedString : INotifyPropertyChanged, IDisposable
     {
         if (_args == null || _args.Length == 0)
         {
-            return _languageService[_key];
+            return _cultureService[_key];
         }
-        return _languageService.Format(_key, _args!);
+        return _cultureService.Format(_key, _args!);
     }
 
     /// <summary>
     /// Handles language change events.
     /// </summary>
-    private void OnLanguageChanged(object? sender, LanguageChangedEventArgs e)
+    private void OnCultureChanged(object? sender, CultureChangedEventArgs e)
     {
         _value = GetValue();
         OnPropertyChanged(nameof(Value));
@@ -93,6 +93,6 @@ public class LocalizedString : INotifyPropertyChanged, IDisposable
     /// </summary>
     public void Dispose()
     {
-        _languageService.LanguageChanged -= OnLanguageChanged;
+        _cultureService.CultureChanged -= OnCultureChanged;
     }
 }

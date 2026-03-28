@@ -396,7 +396,6 @@ public class DatabaseLocalizationProvider : ILocalizationProvider
 │  ┌─────────────────────┐         ┌─────────────────────┐        │
 │  │ DynamicLocalization │         │ DynamicLocalization │        │
 │  │      .Avalonia      │         │        .WPF         │        │
-│  │  - LocalizeExtension│         │  - LocalizeExtension│        │
 │  │  - Avalonia Binding │         │  - WPF Binding      │        │
 │  └─────────────────────┘         └─────────────────────┘        │
 │                                                                 │

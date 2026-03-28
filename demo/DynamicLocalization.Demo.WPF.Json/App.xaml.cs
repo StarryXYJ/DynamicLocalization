@@ -37,7 +37,7 @@ public partial class App : Application
             options.Assembly = typeof(App).Assembly;
         });
 
-        services.AddLanguageService();
+        services.AddCultureService();
         services.AddSingleton<MainWindowViewModel>();
     }
 }

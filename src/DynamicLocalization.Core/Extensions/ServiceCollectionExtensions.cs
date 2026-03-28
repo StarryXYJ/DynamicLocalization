@@ -94,14 +94,14 @@ public static class ServiceCollectionExtensions
     }
 
     /// <summary>
-    /// Adds language service that automatically collects all registered localization providers.
+    /// Adds culture service that automatically collects all registered localization providers.
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <returns>The service collection for method chaining.</returns>
     /// <remarks>
     /// <para>
     /// This method automatically collects all registered <see cref="ILocalizationProvider"/> instances
-    /// and registers them with the <see cref="LanguageService"/>.
+    /// and registers them with the <see cref="CultureService"/>.
     /// </para>
     /// <para>
     /// Must be called after all providers are registered.
@@ -111,19 +111,19 @@ public static class ServiceCollectionExtensions
     /// <code>
     /// services.AddJsonLocalization(...);
     /// services.AddResxLocalization(...);
-    /// services.AddLanguageService(); // Must be called last
+    /// services.AddCultureService(); // Must be called last
     /// </code>
     /// </example>
-    public static IServiceCollection AddLanguageService(this IServiceCollection services)
+    public static IServiceCollection AddCultureService(this IServiceCollection services)
     {
-        services.AddSingleton<ILanguageService>(sp =>
+        services.AddSingleton<ICultureService>(sp =>
         {
-            var languageService = new LanguageService();
+            var cultureService = new CultureService();
             foreach (var provider in sp.GetServices<ILocalizationProvider>())
             {
-                languageService.RegisterProvider(provider);
+                cultureService.RegisterProvider(provider);
             }
-            return languageService;
+            return cultureService;
         });
 
         return services;
@@ -137,7 +137,7 @@ public static class ServiceCollectionExtensions
     /// <remarks>
     /// <para>
     /// This method initializes the static instance of <see cref="LocalizationService"/>,
-    /// enabling XAML markup extensions (like <c>{loc:Localize}</c>) to access the language service.
+    /// enabling XAML markup extensions (like <c>{loc:Localize}</c>) to access the culture service.
     /// </para>
     /// </remarks>
     /// <example>
@@ -147,8 +147,8 @@ public static class ServiceCollectionExtensions
     /// </example>
     public static IServiceProvider InitializeLocalization(this IServiceProvider serviceProvider)
     {
-        var languageService = serviceProvider.GetRequiredService<ILanguageService>();
-        LocalizationService.Initialize(languageService);
+        var cultureService = serviceProvider.GetRequiredService<ICultureService>();
+        LocalizationService.Initialize(cultureService);
         return serviceProvider;
     }
 }

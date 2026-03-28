@@ -45,4 +45,25 @@
   <data name="Color.Green" xml:space="preserve">
     <value>Grün</value>
   </data>
+  <data name="Format.Title" xml:space="preserve">
+    <value>String-Formatierungs-Demo:</value>
+  </data>
+  <data name="Format.Description" xml:space="preserve">
+    <value>Zeigt dynamische String-Formatierung mit Parametern.</value>
+  </data>
+  <data name="Format.Welcome" xml:space="preserve">
+    <value>Willkommen, {0}!</value>
+  </data>
+  <data name="Format.ItemsCount" xml:space="preserve">
+    <value>Sie haben {0} Artikel in Ihrem Warenkorb.</value>
+  </data>
+  <data name="Format.PriceDisplay" xml:space="preserve">
+    <value>Produkt: {0}, Preis: {1:C}</value>
+  </data>
+  <data name="Format.DateDisplay" xml:space="preserve">
+    <value>Heute ist {0:D}</value>
+  </data>
+  <data name="Format.NumberDisplay" xml:space="preserve">
+    <value>Wert: {0:N2}</value>
+  </data>
 </root>

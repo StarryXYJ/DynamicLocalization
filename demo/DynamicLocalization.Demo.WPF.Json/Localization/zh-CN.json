@@ -22,5 +22,14 @@
     "Red": "红色",
     "Blue": "蓝色",
     "Green": "绿色"
+  },
+  "Format": {
+    "Title": "字符串格式化演示：",
+    "Description": "演示带参数的动态字符串格式化。",
+    "Welcome": "欢迎，{0}！",
+    "ItemsCount": "您的购物车中有 {0} 件商品。",
+    "PriceDisplay": "商品：{0}，价格：{1:C}",
+    "DateDisplay": "今天是 {0:D}",
+    "NumberDisplay": "数值：{0:N2}"
   }
 }
