@@ -75,10 +75,10 @@ public class JsonLocalizationProviderOptions
 /// </example>
 public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationProviderOptions>
 {
-    private readonly ConcurrentDictionary<string, Dictionary<string, string>> _cache = new();
-    private JsonLocalizationProviderOptions? _options;
+    protected readonly ConcurrentDictionary<string, Dictionary<string, string>> _cache = new();
+    protected JsonLocalizationProviderOptions? _options;
 
-    public string Name => "Json";
+    public virtual string Name => "Json";
 
     public void Initialize(JsonLocalizationProviderOptions options)
     {
@@ -89,7 +89,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// <summary>
     /// Loads all localization resources.
     /// </summary>
-    private void LoadAll()
+    protected virtual void LoadAll()
     {
         if (_options == null) return;
 
@@ -108,7 +108,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// Resource naming format: {Assembly}.Localization.{culture}.json
     /// Example: AvaloniaLab.Localization.en.json
     /// </summary>
-    private void LoadFromEmbeddedResources()
+    protected virtual void LoadFromEmbeddedResources()
     {
         var assembly = _options!.Assembly ?? Assembly.GetCallingAssembly();
         var resourceNames = assembly.GetManifestResourceNames();
@@ -146,7 +146,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// Example: AvaloniaLab.Localization.en.json -> en
     ///          AvaloniaLab.Localization.zh-CN.json -> zh-CN
     /// </summary>
-    private string? ExtractCultureName(string resourceName)
+    protected virtual string? ExtractCultureName(string resourceName)
     {
         var parts = resourceName.Split('.');
 
@@ -169,7 +169,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// File naming format: {culture}.json
     /// Example: en.json, zh-CN.json
     /// </summary>
-    private void LoadFromFiles()
+    protected virtual void LoadFromFiles()
     {
         var basePath = _options!.BasePath;
 
@@ -207,7 +207,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// Flat format: {"App.Title": "My App"} -> {"App.Title": "My App"}
     /// Nested format: {"App": {"Title": "My App"}} -> {"App.Title": "My App"}
     /// </example>
-    private Dictionary<string, string>? ParseJsonToFlatDictionary(string json)
+    protected virtual Dictionary<string, string>? ParseJsonToFlatDictionary(string json)
     {
         var result = new Dictionary<string, string>();
         
@@ -239,7 +239,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// <param name="obj">JSON object to flatten</param>
     /// <param name="prefix">Current key prefix</param>
     /// <param name="result">Result dictionary to populate</param>
-    private void FlattenJsonObject(JsonObject obj, string prefix, Dictionary<string, string> result)
+    protected virtual void FlattenJsonObject(JsonObject obj, string prefix, Dictionary<string, string> result)
     {
         foreach (var property in obj)
         {
@@ -284,7 +284,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
         return null;
     }
 
-    private bool TryGetFromCulture(string key, CultureInfo culture, out string? value)
+    protected virtual bool TryGetFromCulture(string key, CultureInfo culture, out string? value)
     {
         value = null;
         if (_cache.TryGetValue(culture.Name, out var dict))

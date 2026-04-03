@@ -57,11 +57,11 @@ public class ResxLocalizationProviderOptions
 /// </example>
 public class ResxLocalizationProvider : ILocalizationProvider<ResxLocalizationProviderOptions>
 {
-    private ResourceManager? _resourceManager;
-    private ResxLocalizationProviderOptions? _options;
-    private List<CultureInfo>? _availableCultures;
+    protected ResourceManager? _resourceManager;
+    protected ResxLocalizationProviderOptions? _options;
+    protected List<CultureInfo>? _availableCultures;
 
-    public string Name => "Resx";
+    public virtual string Name => "Resx";
 
     public void Initialize(ResxLocalizationProviderOptions options)
     {
@@ -73,7 +73,7 @@ public class ResxLocalizationProvider : ILocalizationProvider<ResxLocalizationPr
     /// <summary>
     /// Detects available cultures from the resource assembly.
     /// </summary>
-    private void DetectAvailableCultures()
+    protected virtual void DetectAvailableCultures()
     {
         if (_options?.ResourceType == null || _resourceManager == null)
         {
