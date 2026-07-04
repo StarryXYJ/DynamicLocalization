@@ -301,6 +301,27 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     }
 
     /// <summary>
+    /// Loads localization data from a raw JSON string for the specified culture.
+    /// </summary>
+    /// <param name="json">The JSON string containing localization key-value pairs.</param>
+    /// <param name="cultureName">The culture name (e.g., "en", "zh-CN").</param>
+    /// <example>
+    /// <code>
+    /// var provider = new JsonLocalizationProvider();
+    /// provider.LoadJsonString(@"{""App.Title"": ""My App"", ""App.Greeting"": ""Hello""}", "en");
+    /// provider.LoadJsonString(@"{""App.Title"": ""我的应用"", ""App.Greeting"": ""你好""}", "zh-CN");
+    /// </code>
+    /// </example>
+    public void LoadJsonString(string json, string cultureName)
+    {
+        var dict = ParseJsonToFlatDictionary(json);
+        if (dict != null)
+        {
+            _cache[cultureName] = dict;
+        }
+    }
+
+    /// <summary>
     /// Reloads all localization resources.
     /// </summary>
     public async Task ReloadAsync(CancellationToken cancellationToken = default)

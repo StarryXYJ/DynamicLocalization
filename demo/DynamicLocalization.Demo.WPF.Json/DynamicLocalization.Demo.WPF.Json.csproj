@@ -15,6 +15,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\src\DynamicLocalization.WPF\DynamicLocalization.WPF.csproj"/>
+        <ProjectReference Include="..\..\src\DynamicLocalization.DependencyInjection\DynamicLocalization.DependencyInjection.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

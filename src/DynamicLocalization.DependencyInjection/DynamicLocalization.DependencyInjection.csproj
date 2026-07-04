@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
@@ -10,10 +10,10 @@
 
         <!-- NuGet Packaging -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>DynamicLocalization.Core</PackageId>
+        <PackageId>DynamicLocalization.DependencyInjection</PackageId>
         <Authors>Sakuya Starry</Authors>
-        <Description>Core library for DynamicLocalization - platform-independent localization services with hot-reload support and multiple data sources. For DI integration, install DynamicLocalization.DependencyInjection package.</Description>
-        <PackageTags>i18n;Localization</PackageTags>
+        <Description>Microsoft.Extensions.DependencyInjection integration for DynamicLocalization. Provides AddJsonLocalization, AddCultureService, and InitializeLocalization extension methods.</Description>
+        <PackageTags>i18n;Localization;DI;DependencyInjection</PackageTags>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/StarryXYJ/Avalonia.DynamicLocalization</PackageProjectUrl>
         <RepositoryUrl>https://github.com/StarryXYJ/Avalonia.DynamicLocalization.git</RepositoryUrl>
@@ -26,12 +26,12 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\DynamicLocalization.Core\DynamicLocalization.Core.csproj" />
         <PackageReference Include="MinVer" Version="8.0.0-alpha.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="YamlDotNet" Version="18.1.0" />
-        <PackageReference Include="System.Text.Json" Version="9.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[6.0.0,)" />
     </ItemGroup>
 
 </Project>

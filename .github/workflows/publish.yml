@@ -56,6 +56,9 @@ jobs:
       - name: Pack DynamicLocalization.Core
         run: dotnet pack src/DynamicLocalization.Core/DynamicLocalization.Core.csproj --configuration Release --no-build --output artifacts
 
+      - name: Pack DynamicLocalization.DependencyInjection
+        run: dotnet pack src/DynamicLocalization.DependencyInjection/DynamicLocalization.DependencyInjection.csproj --configuration Release --no-build --output artifacts
+
       - name: Pack DynamicLocalization.Avalonia
         run: dotnet pack src/DynamicLocalization.Avalonia/DynamicLocalization.Avalonia.csproj --configuration Release --no-build --output artifacts
 

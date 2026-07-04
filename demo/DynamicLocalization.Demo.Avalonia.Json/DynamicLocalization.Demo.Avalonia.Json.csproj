@@ -28,6 +28,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\DynamicLocalization.Avalonia\DynamicLocalization.Avalonia.csproj" />
+      <ProjectReference Include="..\..\src\DynamicLocalization.DependencyInjection\DynamicLocalization.DependencyInjection.csproj" />
     </ItemGroup>
 
     <ItemGroup>

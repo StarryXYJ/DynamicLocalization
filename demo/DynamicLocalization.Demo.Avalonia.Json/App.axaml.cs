@@ -38,8 +38,10 @@ public partial class App : Application
     public override void Initialize()
     {
         var services = new ServiceCollection();
+        
         ConfigureServices(services);
         Services = services.BuildServiceProvider().InitializeLocalization();
+        
         AvaloniaXamlLoader.Load(this);
     }
 
@@ -74,6 +76,7 @@ public partial class App : Application
         });
 
         services.AddCultureService();
+        
         services.AddSingleton<MainWindowViewModel>();
     }
 
