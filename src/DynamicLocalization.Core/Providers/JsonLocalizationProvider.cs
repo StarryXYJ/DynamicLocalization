@@ -33,7 +33,7 @@ public class JsonLocalizationProviderOptions
     public bool UseEmbeddedResources { get; set; } = false;
 
     /// <summary>
-    /// Assembly containing embedded resources. Default is the calling assembly.
+    /// Assembly containing embedded resources. Defaults to the entry assembly.
     /// </summary>
     public Assembly? Assembly { get; set; }
 }
@@ -75,7 +75,7 @@ public class JsonLocalizationProviderOptions
 /// </example>
 public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationProviderOptions>
 {
-    protected readonly ConcurrentDictionary<string, Dictionary<string, string>> _cache = new();
+    protected ConcurrentDictionary<string, Dictionary<string, string>> _cache = new();
     protected JsonLocalizationProviderOptions? _options;
 
     public virtual string Name => "Json";
@@ -91,15 +91,20 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// </summary>
     protected virtual void LoadAll()
     {
+        LoadAll(_cache);
+    }
+
+    private void LoadAll(ConcurrentDictionary<string, Dictionary<string, string>> cache)
+    {
         if (_options == null) return;
 
         if (_options.UseEmbeddedResources)
         {
-            LoadFromEmbeddedResources();
+            LoadFromEmbeddedResources(cache);
         }
         else
         {
-            LoadFromFiles();
+            LoadFromFiles(cache);
         }
     }
 
@@ -110,7 +115,12 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// </summary>
     protected virtual void LoadFromEmbeddedResources()
     {
-        var assembly = _options!.Assembly ?? Assembly.GetCallingAssembly();
+        LoadFromEmbeddedResources(_cache);
+    }
+
+    private void LoadFromEmbeddedResources(ConcurrentDictionary<string, Dictionary<string, string>> cache)
+    {
+        var assembly = _options!.Assembly ?? Assembly.GetEntryAssembly() ?? typeof(JsonLocalizationProvider).Assembly;
         var resourceNames = assembly.GetManifestResourceNames();
 
         foreach (var name in resourceNames)
@@ -135,7 +145,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
             var dict = ParseJsonToFlatDictionary(json);
             if (dict != null)
             {
-                _cache[cultureName] = dict;
+                cache[cultureName!] = dict;
                 System.Diagnostics.Debug.WriteLine($"[JsonProvider] Loaded {dict.Count} strings for culture: {cultureName}");
             }
         }
@@ -171,6 +181,11 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// </summary>
     protected virtual void LoadFromFiles()
     {
+        LoadFromFiles(_cache);
+    }
+
+    private void LoadFromFiles(ConcurrentDictionary<string, Dictionary<string, string>> cache)
+    {
         var basePath = _options!.BasePath;
 
         if (!Path.IsPathRooted(basePath))
@@ -192,7 +207,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
             var dict = ParseJsonToFlatDictionary(json);
             if (dict != null)
             {
-                _cache[cultureName] = dict;
+                cache[cultureName] = dict;
             }
         }
     }
@@ -219,15 +234,11 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
                 FlattenJsonObject(rootObject, "", result);
             }
             else
-            {
-                var legacyDict = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-                return legacyDict;
-            }
+                return null;
         }
         catch (JsonException)
         {
-            var legacyDict = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-            return legacyDict;
+            return null;
         }
 
         return result;
@@ -276,7 +287,7 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
             return value;
         }
 
-        if (!string.IsNullOrEmpty(culture.Parent?.Name) && TryGetFromCulture(key, culture.Parent, out value))
+        if (culture.Parent is { } parentCulture && !string.IsNullOrEmpty(parentCulture.Name) && TryGetFromCulture(key, parentCulture, out value))
         {
             return value;
         }
@@ -326,7 +337,8 @@ public class JsonLocalizationProvider : ILocalizationProvider<JsonLocalizationPr
     /// </summary>
     public async Task ReloadAsync(CancellationToken cancellationToken = default)
     {
-        _cache.Clear();
-        await Task.Run(LoadAll, cancellationToken);
+        var cache = new ConcurrentDictionary<string, Dictionary<string, string>>();
+        await Task.Run(() => LoadAll(cache), cancellationToken).ConfigureAwait(false);
+        Interlocked.Exchange(ref _cache, cache);
     }
 }

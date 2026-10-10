@@ -64,7 +64,7 @@ public class YamlLocalizationProviderOptions
 /// </example>
 public class YamlLocalizationProvider : ILocalizationProvider<YamlLocalizationProviderOptions>
 {
-    protected readonly ConcurrentDictionary<string, Dictionary<string, string>> _cache = new();
+    protected ConcurrentDictionary<string, Dictionary<string, string>> _cache = new();
     protected YamlLocalizationProviderOptions? _options;
 
     public virtual string Name => "Yaml";
@@ -80,8 +80,13 @@ public class YamlLocalizationProvider : ILocalizationProvider<YamlLocalizationPr
     /// </summary>
     protected virtual void LoadAll()
     {
+        LoadAll(_cache);
+    }
+
+    private void LoadAll(ConcurrentDictionary<string, Dictionary<string, string>> cache)
+    {
         if (_options == null) return;
-        LoadFromFiles();
+        LoadFromFiles(cache);
     }
 
     /// <summary>
@@ -90,6 +95,11 @@ public class YamlLocalizationProvider : ILocalizationProvider<YamlLocalizationPr
     /// Example: en.yml, zh-CN.yml, en.yaml, zh-CN.yaml
     /// </summary>
     protected virtual void LoadFromFiles()
+    {
+        LoadFromFiles(_cache);
+    }
+
+    private void LoadFromFiles(ConcurrentDictionary<string, Dictionary<string, string>> cache)
     {
         var basePath = _options!.BasePath;
 
@@ -118,7 +128,7 @@ public class YamlLocalizationProvider : ILocalizationProvider<YamlLocalizationPr
             var dict = ParseYamlToFlatDictionary(yaml);
             if (dict != null)
             {
-                _cache[cultureName] = dict;
+                cache[cultureName] = dict;
             }
         }
     }
@@ -260,7 +270,7 @@ public class YamlLocalizationProvider : ILocalizationProvider<YamlLocalizationPr
             return value;
         }
 
-        if (!string.IsNullOrEmpty(culture.Parent?.Name) && TryGetFromCulture(key, culture.Parent, out value))
+        if (culture.Parent is { } parentCulture && !string.IsNullOrEmpty(parentCulture.Name) && TryGetFromCulture(key, parentCulture, out value))
         {
             return value;
         }
@@ -289,7 +299,8 @@ public class YamlLocalizationProvider : ILocalizationProvider<YamlLocalizationPr
     /// </summary>
     public async Task ReloadAsync(CancellationToken cancellationToken = default)
     {
-        _cache.Clear();
-        await Task.Run(LoadAll, cancellationToken);
+        var cache = new ConcurrentDictionary<string, Dictionary<string, string>>();
+        await Task.Run(() => LoadAll(cache), cancellationToken).ConfigureAwait(false);
+        Interlocked.Exchange(ref _cache, cache);
     }
 }

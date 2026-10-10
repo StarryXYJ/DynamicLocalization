@@ -27,11 +27,11 @@
 
     <ItemGroup>
         <ProjectReference Include="..\DynamicLocalization.Core\DynamicLocalization.Core.csproj" />
-        <PackageReference Include="MinVer" Version="8.0.0-alpha.1">
+        <PackageReference Include="MinVer" Version="[8.0.0-alpha.1,9.0.0)">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[6.0.0,)" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[6.0.0,10.0.0)" />
     </ItemGroup>
 
 </Project>

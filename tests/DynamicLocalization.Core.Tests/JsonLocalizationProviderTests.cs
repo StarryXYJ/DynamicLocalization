@@ -170,6 +170,15 @@ public class JsonLocalizationProviderTests
     }
 
     [Fact]
+    public void LoadJsonString_WithInvalidJson_ShouldNotThrowOrModifyCache()
+    {
+        var provider = new JsonLocalizationProvider();
+        provider.LoadJsonString("{ invalid", "en");
+
+        Assert.Empty(provider.GetAvailableCultures());
+    }
+
+    [Fact]
     public void Initialize_WithFileOptions_ShouldNotThrow()
     {
         var provider = new JsonLocalizationProvider();

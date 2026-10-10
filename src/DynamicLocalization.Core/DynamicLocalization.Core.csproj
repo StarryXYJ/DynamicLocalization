@@ -26,12 +26,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MinVer" Version="8.0.0-alpha.1">
+        <PackageReference Include="MinVer" Version="[8.0.0-alpha.1,9.0.0)">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="YamlDotNet" Version="18.1.0" />
-        <PackageReference Include="System.Text.Json" Version="9.0.0" />
+        <PackageReference Include="YamlDotNet" Version="[11.0.1,19.0.0)" />
+        <PackageReference Include="System.Text.Json" Version="[6.0.10,10.0.0)" />
     </ItemGroup>
 
 </Project>
